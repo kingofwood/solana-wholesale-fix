@@ -1,0 +1,32 @@
+// Import required modules
+const express = require('express');
+const cors = require('cors');
+
+// Create express app
+const app = express();
+const PORT = 3000;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Serve static files from frontend directory
+app.use(express.static('frontend'));
+
+// API endpoint for payment processing
+app.post('/api/payment', (req, res) => {
+  // REAL INTEGRATION: Ganti dengan Solana Pay SDK di production
+  console.log('Payment request received:', req.body);
+  
+  // Mock response for proof of concept
+  res.json({
+    success: true,
+    txid: "mock_tx_123",
+    message: "Payment processed successfully"
+  });
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
